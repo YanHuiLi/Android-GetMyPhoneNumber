@@ -4,10 +4,17 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Archer on 2016/3/16.
  */
 public class GetNumber {
+
+    //拿到数据进行封装，使用list
+    public static List<PhoneInfo>lists=new ArrayList<PhoneInfo>();
+
 
 
     public static String getNumber(Context mcontext) {
@@ -24,6 +31,12 @@ public class GetNumber {
             //获取电话号码
             PhoneNumber = mcursor.getString(mcursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
             PhoneName= mcursor.getString(mcursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+
+            //在这进行实例化填入数据进入list
+            PhoneInfo phoneInfo=new PhoneInfo(PhoneName,PhoneNumber);
+            lists.add(phoneInfo);
+
+
 //            打印出来看看
             System.out.println(PhoneName+PhoneNumber);
         }
